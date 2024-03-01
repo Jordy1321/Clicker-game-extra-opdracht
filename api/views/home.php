@@ -41,7 +41,8 @@ if (isset($_COOKIE['userId'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ITC!</title>
+    <title>Idle Tosti Clicker</title>
+    <style rel='stylesheet' type='text/css' href='css/home.css'></style>
 </head>
 
 <body>
@@ -166,6 +167,7 @@ if (isset($_COOKIE['userId'])) {
                             var autoClickerCount = 0;
                             if (inventoryData && inventoryData.length > 0) {
                                 autoClickerCount = inventoryData[0].itemCount;
+                                console.log(autoClickerCount);
                             } else console.log("No inventory data found");
                             costAutoClicker.innerText = calculateCost(10, autoClickerCount);
                             document.getElementById('jCoins').innerText = userData.points;
@@ -217,7 +219,10 @@ if (isset($_COOKIE['userId'])) {
             });
 
             document.getElementById('buyAutoClicker').addEventListener('click', function () {
+                saveStats();
                 var itemName = 'Auto Clicker'; // Update this to the name of the item
+                var costElement = document.getElementById('costAutoClicker');
+                var currentCost = parseInt(costElement.textContent, 10);
 
                 // Make a POST request to activate.php
                 fetch('/api/v1/activate', {
@@ -233,6 +238,12 @@ if (isset($_COOKIE['userId'])) {
                             console.log(data);
                             // Update the user's points
                             document.getElementById('jCoins').innerText = data.body.newPoints;
+                            var newCost = calculateCost(currentCost, 1); // replace 1 with the actual amount
+                            costElement.textContent = newCost.toString();
+                        } else {
+                            if (data.message === "Not enough points") {
+                                alert("Not enough points");
+                            }
                         }
                     })
                     .catch(error => {
@@ -256,6 +267,14 @@ if (isset($_COOKIE['userId'])) {
             }, 1000);
 
             window.onbeforeunload = function () {
+                saveStats();
+            };
+
+            function calculateCost(baseCost, amount) {
+                return Math.ceil(baseCost * Math.pow(1.05, amount));
+            }
+
+            function saveStats() {
                 // Make a POST request to /api/v1/stats
                 fetch('/api/v1/stats', {
                     method: 'POST',
@@ -271,10 +290,6 @@ if (isset($_COOKIE['userId'])) {
                     .catch(error => {
                         console.error('Error:', error);
                     });
-            };
-
-            function calculateCost(baseCost, amount) {
-                return baseCost * Math.pow(1.15, amount);
             }
         </script>
 
