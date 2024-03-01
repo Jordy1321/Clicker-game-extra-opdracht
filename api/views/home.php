@@ -42,27 +42,41 @@ if (isset($_COOKIE['userId'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Idle Tosti Clicker</title>
-    <link rel="stylesheet" type="text/css" href="https://cdn.discordapp.com/attachments/663678139268071437/1213068785700044840/home.css?ex=65f42158&is=65e1ac58&hm=4b7d50da98dc6b3340ed04661394fc61d74d6b64f953595c5ec6f694285fe401&">
+    <link rel='stylesheet' type='text/css' href='style.css'>
 </head>
 
 <body>
-
-    <div id="loadingScreen">
+    <!-- <div id="loadingScreen">
         <p>Loading...</p>
+    </div> -->
+    <div id="navbar">
+        <div class="navbar-part" id="navBar">
+            <h1>Idle Tosti Clicker</h1>
+            <img src="https://cdn.discordapp.com/attachments/663678139268071437/1211971854529462304/image-removebg-preview.png?ex=65f023bf&is=65ddaebf&hm=45feba06ba03e6e8f3017066c4dbc755a689b758b92004b9fd29d95a7f774a52&"
+                alt="JC" id="jCoinsPicture">
+            <p id="jCoins">0</p>
+        </div>
+        <div class="navbar-part" id="navBarR">
+            <img src="https://cdn.discordapp.com/attachments/663678139268071437/1211971854529462304/image-removebg-preview.png?ex=65f023bf&is=65ddaebf&hm=45feba06ba03e6e8f3017066c4dbc755a689b758b92004b9fd29d95a7f774a52&"
+                alt="JC" id="jCoinsPicture">
+            <p id="jCoins">0</p>
+        </div>
     </div>
-    <div id="navBar">
-        <h1>Idle Tosti Clicker</h1>
-        <img src="https://cdn.discordapp.com/attachments/663678139268071437/1211971854529462304/image-removebg-preview.png?ex=65f023bf&is=65ddaebf&hm=45feba06ba03e6e8f3017066c4dbc755a689b758b92004b9fd29d95a7f774a52&"
-            alt="JC" id="jCoinsPicture">
-        <p id="jCoins">0</p>
-    </div>
+
     <div id="leftBox">
         <img id="clickButton"
             src="https://cdn.discordapp.com/attachments/663678139268071437/1211973836895944724/WhatsApp_Image_2024-02-26_at_21.02.07-removebg-preview.png?ex=65f02598&is=65ddb098&hm=7c72cc7a4a2ccfe3c87442d0bc2a2da13dee1680f435e2dd578cf45bd160e0d7&"
             alt="Center Image">
     </div>
+    <div id="rightBox">
+        <img id="clickButton"
+            src="https://cdn.discordapp.com/attachments/663678139268071437/1211973836895944724/WhatsApp_Image_2024-02-26_at_21.02.07-removebg-preview.png?ex=65f02598&is=65ddb098&hm=7c72cc7a4a2ccfe3c87442d0bc2a2da13dee1680f435e2dd578cf45bd160e0d7&"
+            alt="Center Image">
+    </div>
     <div id="startingText">
-        <p>Welcome to Idle Tosti Clicker! Click the Tosti to earn points.</p>
+        <p>Welcome to Idle Tosti Clicker! Click the magical <span class="BTS"><img
+                    src="https://cdn.discordapp.com/attachments/663678139268071437/1211973836895944724/WhatsApp_Image_2024-02-26_at_21.02.07-removebg-preview.png?ex=65f02598&is=65ddb098&hm=7c72cc7a4a2ccfe3c87442d0bc2a2da13dee1680f435e2dd578cf45bd160e0d7&"></span>
+            to earn points.</p>
     </div>
 
     <div id="inventory"></div>
@@ -88,11 +102,12 @@ if (isset($_COOKIE['userId'])) {
                     <button id="buyAutoClicker">Buy</button>
                 </div>
             </div>
-            <div class="shopItem">
+            <div class="shopItem" id="tostiHamKaas">
                 <img src="" alt="item2">
                 <h2>Tosti Ham Kaas</h2>
                 <p>De Tosti heeft ham. 2x JostiCoins per klik</p>
-                <button id="Tosti Ham Kaas">Buy</button>
+                <p id="costTostiHamKaas">1000</p>
+                <button id="buyTostiHamKaas">Buy</button>
             </div>
             <div class="shopItem">
                 <img src="" alt="item3">
@@ -163,6 +178,12 @@ if (isset($_COOKIE['userId'])) {
 
             // Add an event listener to the click button
             document.getElementById('clickButton').addEventListener('click', function () {
+                var newAmount;
+                var bU;
+                if (!document.getElementById('tostiHamKaas')) {
+                    newAmount = 1;
+                    bU = false;
+                } else newAmount = 2; bU = true;
                 // Update the user's points locally
                 var pointsElement = document.getElementById('jCoins');
                 if (pointsElement.innerText === "null" || pointsElement.innerText === "undefined" || pointsElement.innerText === "NaN" || pointsElement.innerText === "0" || pointsElement.innerText === "") {
@@ -170,7 +191,7 @@ if (isset($_COOKIE['userId'])) {
                 }
                 var currentPoints = parseInt(pointsElement.innerText);
                 var tostiElement = document.getElementById('clickButton');
-                pointsElement.innerText = currentPoints + 1;
+                pointsElement.innerText = currentPoints + newAmount;
                 // Check if the user data is null
                 if (userData === null) {
                     // Show the registration form
@@ -180,6 +201,7 @@ if (isset($_COOKIE['userId'])) {
                     var xhr = new XMLHttpRequest();
                     xhr.open('POST', '/api/v1/click', true);
                     xhr.setRequestHeader('Content-Type', 'application/json');
+                    xhr.send(JSON.stringify({ bU: bU }));
                     xhr.send();
 
 
@@ -232,6 +254,38 @@ if (isset($_COOKIE['userId'])) {
                     });
             });
 
+            document.getElementById('buyTostiHamKaas').addEventListener('click', function () {
+                saveStats();
+                var itemName = 'TostiHamKaas'; // Update this to the name of the item
+                var shopItemElement = document.getElementById('tostiHamKaas');
+                var currentCost = 1000;
+
+                // Make a POST request to activate.php
+                fetch('/api/v1/activate', {
+                    method: 'POST',
+                    body: JSON.stringify({ userId: userId, itemName: itemName }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            console.log(data);
+                            // Update the user's points
+                            document.getElementById('jCoins').innerText = data.body.newPoints;
+                            costElement.innerHTML = "";
+                        } else {
+                            if (data.message === "Not enough points") {
+                                alert("Not enough points");
+                            }
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            });
+
             setInterval(() => {
                 if (inventoryData === undefined || !inventoryData[1]) {
                     return;
@@ -273,7 +327,6 @@ if (isset($_COOKIE['userId'])) {
                     });
             }
         </script>
-
 </body>
 
 </html>

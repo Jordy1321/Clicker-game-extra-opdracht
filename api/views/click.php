@@ -36,8 +36,15 @@ if (isset($_COOKIE['userId'])) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Check if the user data is not null
     if ($userData !== null) {
+        // Get the POST data
+        $postData = json_decode(file_get_contents('php://input'), true);
+        $bU = $postData['bU'] ?? null;
         // Increase the user's points by 1
-        $newPoints = $userData['points'] + 1;
+        if ($bU == "true") {
+            $newPoints = $userData['points'] + 2;
+        } else {
+            $newPoints = $userData['points'] + 1;
+        }
 
         // Prepare a SQL query to update the user's points
         $updateSql = "UPDATE users SET points = ? WHERE userId = ?";
