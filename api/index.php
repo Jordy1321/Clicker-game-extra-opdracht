@@ -32,4 +32,8 @@ switch ($request) {
     case $api . '/register':
         require __DIR__ . $viewDir . 'register.php';
         break;
+
+    case '/css/home.css':
+        require __DIR__ . $viewDir . '/css/home.css';
+        break;
 }
