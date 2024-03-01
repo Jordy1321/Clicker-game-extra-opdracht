@@ -1,0 +1,84 @@
+#loadingScreen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+}
+
+#loadingScreen p {
+    color: white;
+    font-size: 24px;
+}
+
+
+#jCoinsPicture {
+    width: 50px;
+    height: 50px;
+    size: 10%;
+    display: inline;
+    position: relative;
+    right: 10px;
+    top: 10px;
+}
+
+#jCoins {
+    display: inline;
+    font-size: 50px;
+    right: 10px;
+    top: 5px;
+    position: relative;
+}
+
+#navBar {
+    background-color: #696969;
+    padding-left: 15px;
+    padding-top: 2px;
+    height: 150px
+}
+
+body {
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+#leftBox {
+    position: absolute;
+    left: 0;
+    width: 200px;
+    height: 100vh;
+    border-right: 3px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#clickButton {
+    width: 150px;
+    height: auto;
+}
+
+#startingText {
+    position: relative;
+    left: 200px;
+    padding: 20px;
+}
+
+.shopItem {
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.shopItem img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
