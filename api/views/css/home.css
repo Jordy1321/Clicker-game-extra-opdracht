@@ -130,3 +130,17 @@ body {
 .BTS img{
     height: 30px;
 }
+
+.tosti {
+    position: absolute;
+    background-image: url('https://cdn.discordapp.com/attachments/663678139268071437/1211973836895944724/WhatsApp_Image_2024-02-26_at_21.02.07-removebg-preview.png?ex=65f02598&is=65ddb098&hm=7c72cc7a4a2ccfe3c87442d0bc2a2da13dee1680f435e2dd578cf45bd160e0d7&');
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    0% { transform: translateY(-100vh); }
+    100% { transform: translateY(100vh); }
+}

@@ -42,13 +42,14 @@ if (isset($_COOKIE['userId'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Idle Tosti Clicker</title>
-    <link rel='stylesheet' type='text/css' href='style.css'>
+    <link rel='stylesheet' type='text/css'
+        href='https://cdn.discordapp.com/attachments/663678139268071437/1213111313480421466/home.css?ex=65f448f3&is=65e1d3f3&hm=71271f7001708a7d729e93765dad2578c29275d628dfe0317ffb5c9fd98d59c9&'>
 </head>
 
 <body>
-    <!-- <div id="loadingScreen">
+    <div id="loadingScreen">
         <p>Loading...</p>
-    </div> -->
+    </div>
     <div id="navbar">
         <div class="navbar-part" id="navBar">
             <h1>Idle Tosti Clicker</h1>
@@ -202,7 +203,6 @@ if (isset($_COOKIE['userId'])) {
                     xhr.open('POST', '/api/v1/click', true);
                     xhr.setRequestHeader('Content-Type', 'application/json');
                     xhr.send(JSON.stringify({ bU: bU }));
-                    xhr.send();
 
 
                 }
@@ -326,6 +326,19 @@ if (isset($_COOKIE['userId'])) {
                         console.error('Error:', error);
                     });
             }
+            function createTosti() {
+                var tosti = document.createElement('div');
+                tosti.className = 'tosti';
+                tosti.style.left = Math.random() * document.getElementById('leftBox').offsetWidth + 'px';
+                tosti.style.animationDuration = Math.random() * 2 + 3 + 's'; // Random fall duration between 3 and 5 seconds
+                document.getElementById('leftBox').appendChild(tosti);
+                // Remove the tosti after it falls down
+                setTimeout(function () {
+                    document.getElementById('leftBox').removeChild(tosti);
+                }, 5000);
+            }
+            // Create a new tosti every 100 milliseconds
+            setInterval(createTosti, 100);
         </script>
 </body>
 
