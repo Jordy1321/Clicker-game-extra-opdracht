@@ -178,7 +178,11 @@ if (isset($_COOKIE['userId'])) {
             };
 
             // Add an event listener to the click button
+
+            var isCooldown = false;
+
             document.getElementById('clickButton').addEventListener('click', function () {
+                if (isCooldown) return;  // If cooldown is active, don't execute the function
                 var newAmount;
                 var bU;
                 if (!document.getElementById('tostiHamKaas')) {
@@ -209,6 +213,7 @@ if (isset($_COOKIE['userId'])) {
                 tostiElement.style.width = '145px';
                 setTimeout(function () {
                     tostiElement.style.width = '150px';
+                    isCooldown = false;
                 }, 100);
             });
 
@@ -293,13 +298,13 @@ if (isset($_COOKIE['userId'])) {
                 } else {
                     inventoryData.forEach(item => {
                         if (item.itemName === "Auto Clicker") {
-                            var amount = 0.1 * item.itemCount;
+                            var amount = 1 * item.itemCount;
                             var newPoints = parseInt(document.getElementById('jCoins').innerText) + amount;
                             document.getElementById('jCoins').innerText = newPoints;
                         }
                     });
                 }
-            }, 1000);
+            }, 10000);
 
             window.onbeforeunload = function () {
                 saveStats();
