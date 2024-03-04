@@ -237,7 +237,14 @@ body {
     display: flex;
     align-items: top;
     border: 3px solid black;
-    width: 100%;
+    width: 90px;
     border-radius: 5px;
     height: 75px;
+}
+
+.name h1{
+    margin-left: 15%;
+}
+.mini{
+   font-size: 20px; 
 }
