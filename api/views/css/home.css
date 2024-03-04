@@ -84,9 +84,14 @@ body {
     width: 400px;
     height: 100vh;
     border-right: 3px solid black;
-    display: flex;
+    display: block;
     justify-content: center;
     align-items: center;
+}
+.CT img{
+    position: absolute;
+    left: 30%;
+    top: 50%;
 }
 #rightBox {
     position: absolute;
@@ -94,9 +99,8 @@ body {
     width: 400px;
     height: 100vh;
     border-left: 3px solid black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: block;
+    align-items: top;
 }
 
 #clickButton {
@@ -107,18 +111,10 @@ body {
 #startingText {
     position: relative;
     left: 400px;
-    padding: 20px;
+    padding: 15px;
     font-size: 20px;
     font-style: italic;
     font-weight: bold;
-}
-
-.shopItem {
-    display: flex;
-    align-items: center;
-    border: 1px solid black;
-    padding: 10px;
-    margin-bottom: 10px;
 }
 
 .shopItem img {
@@ -131,16 +127,117 @@ body {
     height: 30px;
 }
 
-.tosti {
-    position: absolute;
-    background-image: url('https://cdn.discordapp.com/attachments/663678139268071437/1211973836895944724/WhatsApp_Image_2024-02-26_at_21.02.07-removebg-preview.png?ex=65f02598&is=65ddb098&hm=7c72cc7a4a2ccfe3c87442d0bc2a2da13dee1680f435e2dd578cf45bd160e0d7&');
-    background-size: cover;
-    width: 50px;
-    height: 50px;
-    animation: fall linear infinite;
+.shop{
+    height: 75px;
+    border: 3px solid black;
+    border-radius: 3px;
+}
+.shop h2{
+    margin-left: 43%;
 }
 
-@keyframes fall {
-    0% { transform: translateY(-100vh); }
-    100% { transform: translateY(100vh); }
+.shopItem {
+    display: flex;
+    align-items: top;
+    border: 3px solid black;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    height: 75px;
+}
+
+.shopItem2 {
+    display: flex;
+    align-items: top;
+    border: 3px solid black;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    height: 75px;
+}
+ 
+.shopItem img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+ 
+.shopItem .itemName {
+    font-size: 18px;
+    font-weight: bold;
+}
+ 
+.shopItem .itemDescription {
+    font-size: 14px;
+    color: #666;
+}
+ 
+.shopItem .itemCost {
+    font-size: 16px;
+    color: #007bff;
+}
+ 
+.shopItem .itemAmount {
+    font-size: 16px;
+    color: #333;
+}
+.shopItem #amountAutoClicker{
+    position: absolute;
+    right: 10px;
+    top: 200px;
+    font-size: 50px;
+    font-weight: bold;
+}
+.shopItem2 img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+ 
+.shopItem2 .itemName {
+    font-size: 18px;
+    font-weight: bold;
+}
+ 
+.shopItem2 .itemDescription {
+    font-size: 14px;
+    color: #666;
+}
+ 
+.shopItem2 .itemCost {
+    font-size: 16px;
+    color: #007bff;
+}
+ 
+.shopItem2 .itemAmount {
+    font-size: 16px;
+    color: #333;
+}
+
+.shopItem2 #amountAutoClicker{
+    position: absolute;
+    right: 10px;
+    top: 300px;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.shopItem2 #Tosti_Ham_Kaas{
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    font-size: 50px;
+    font-weight: bold;
+}
+.Stext{
+    width: 690px;
+}
+
+.U{
+    display: flex;
+    align-items: top;
+    border: 3px solid black;
+    width: 100%;
+    border-radius: 5px;
+    height: 75px;
 }

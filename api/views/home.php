@@ -43,18 +43,20 @@ if (isset($_COOKIE['userId'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Idle Tosti Clicker</title>
     <link rel='stylesheet' type='text/css'
-        href='https://cdn.discordapp.com/attachments/663678139268071437/1213111313480421466/home.css?ex=65f448f3&is=65e1d3f3&hm=71271f7001708a7d729e93765dad2578c29275d628dfe0317ffb5c9fd98d59c9&'>
+        href='https://cdn.discordapp.com/attachments/663678139268071437/1214201910849175602/home.css?ex=65f840a6&is=65e5cba6&hm=a3271a568f742c2c7ba4a96a6eced38706076c4cd7ef6d4281dc7e994f257b89&'>
 </head>
 
 <body>
     <div id="loadingScreen">
         <p>Loading...</p>
     </div>
-    <div id="navbar">
+    <!-- <div id="navbar">
         <div class="navbar-part" id="navBar">
             <h1>Idle Tosti Clicker</h1>
             <img src="https://cdn.discordapp.com/attachments/663678139268071437/1211971854529462304/image-removebg-preview.png?ex=65f023bf&is=65ddaebf&hm=45feba06ba03e6e8f3017066c4dbc755a689b758b92004b9fd29d95a7f774a52&"
                 alt="JC" id="jCoinsPicture">
+            <p id="jCoins">0</p>
+            <p id="jCoins">0</p>
             <p id="jCoins">0</p>
         </div>
         <div class="navbar-part" id="navBarR">
@@ -62,24 +64,70 @@ if (isset($_COOKIE['userId'])) {
                 alt="JC" id="jCoinsPicture">
             <p id="jCoins">0</p>
         </div>
-    </div>
-
+    </div> -->
     <div id="leftBox">
+            <div class="name" id="name">
+                <h1>Idle Tosti Clicker</h1>
+            </div>
+            <div class="navbar-part" id="navBar">
+                <img src="https://cdn.discordapp.com/attachments/663678139268071437/1211971854529462304/image-removebg-preview.png?ex=65f023bf&is=65ddaebf&hm=45feba06ba03e6e8f3017066c4dbc755a689b758b92004b9fd29d95a7f774a52&"
+                    alt="JC" id="jCoinsPicture">
+                <p id="jCoins">0</p><br>
+                <p id="jCoins">0</p><br>
+            </div>
+    <div class="CT">  
         <img id="clickButton"
             src="https://cdn.discordapp.com/attachments/663678139268071437/1211973836895944724/WhatsApp_Image_2024-02-26_at_21.02.07-removebg-preview.png?ex=65f02598&is=65ddb098&hm=7c72cc7a4a2ccfe3c87442d0bc2a2da13dee1680f435e2dd578cf45bd160e0d7&"
             alt="Center Image">
+    </div> 
     </div>
     <div id="rightBox">
-        <img id="clickButton"
-            src="https://cdn.discordapp.com/attachments/663678139268071437/1211973836895944724/WhatsApp_Image_2024-02-26_at_21.02.07-removebg-preview.png?ex=65f02598&is=65ddb098&hm=7c72cc7a4a2ccfe3c87442d0bc2a2da13dee1680f435e2dd578cf45bd160e0d7&"
-            alt="Center Image">
+        <div class="shop" id="shop">
+            <h2 class="itemName">Shop</h2>
+        </div>
+        <div class="shopItem" id="Tosti_Ham_Kaas">
+            <div class="U">
+                
+            </div>
+            <div class="U">
+                
+            </div>
+        </div>
+        <div class="shopItem" id="buyAutoClicker">
+            <img src="https://cdn.discordapp.com/attachments/663678139268071437/1212479867623571466/image-removebg-preview_2.png?ex=65f1fcdf&is=65df87df&hm=e0339fb37f5076577245a6be84ba908bb875d8b1906f11c7d28621377fba6867&" alt="item1">
+            <div>
+                <h2 class="itemName">Auto Clicker</h2>
+                <!-- <p class="itemDescription">De Tosti word automatisch geclickt. 0.1 JostiCoin per seconde</p> -->
+                <p class="itemCost" id="costAutoClicker">10</p>
+                <span id="amountAutoClicker">0</span>
+            </div>
+        </div>
+        <div class="shopItem2" id="Tosti_Ham_Kaas">
+            <img src="https://cdn.discordapp.com/attachments/663678139268071437/1212479867623571466/image-removebg-preview_2.png?ex=65f1fcdf&is=65df87df&hm=e0339fb37f5076577245a6be84ba908bb875d8b1906f11c7d28621377fba6867&" alt="item1">
+            <div>
+                <h2 class="itemName">Tosti Ham Kaas</h2>
+                <!-- <p class="itemDescription">De Tosti word automatisch geclickt. 0.1 JostiCoin per seconde</p> -->
+                <p class="itemCost" id="costAutoClicker">10</p>
+                <span id="amountAutoClicker">0</span>
+            </div>
+        </div>
+        <div class="shopItem" id="Tosti_Ham_Kaas">
+            <img src="https://cdn.discordapp.com/attachments/663678139268071437/1212479867623571466/image-removebg-preview_2.png?ex=65f1fcdf&is=65df87df&hm=e0339fb37f5076577245a6be84ba908bb875d8b1906f11c7d28621377fba6867&" alt="item1">
+            <div>
+                <h2 class="itemName">Tosti Ham Kaas</h2>
+                <!-- <p class="itemDescription">De Tosti word automatisch geclickt. 0.1 JostiCoin per seconde</p> -->
+                <p class="itemCost" id="costAutoClicker">10</p>
+                <span id="amountAutoClicker">0</span>
+            </div>
+        </div>
     </div>
+    <div class="Stext">
     <div id="startingText">
-        <p>Welcome to Idle Tosti Clicker! Click the magical <span class="BTS"><img
-                    src="https://cdn.discordapp.com/attachments/663678139268071437/1211973836895944724/WhatsApp_Image_2024-02-26_at_21.02.07-removebg-preview.png?ex=65f02598&is=65ddb098&hm=7c72cc7a4a2ccfe3c87442d0bc2a2da13dee1680f435e2dd578cf45bd160e0d7&"></span>
+        <p>Welcome to Idle Tosti Clicker! Click the magical <span class="BTS">
+            <img src="https://cdn.discordapp.com/attachments/663678139268071437/1211973836895944724/WhatsApp_Image_2024-02-26_at_21.02.07-removebg-preview.png?ex=65f02598&is=65ddb098&hm=7c72cc7a4a2ccfe3c87442d0bc2a2da13dee1680f435e2dd578cf45bd160e0d7&"></span>
             to earn points.</p>
     </div>
-
+    </div>
     <div id="inventory"></div>
 
     <div id="registerForm" style="display: none;">
@@ -89,8 +137,8 @@ if (isset($_COOKIE['userId'])) {
             <input type="submit" value="Submit">
         </form>
     </div>
-    <button id="shopButton" style="position: fixed; bottom: 20px; right: 20px;">Shop</button>
-    <div id="shopDiv" style="display: none; position: fixed; bottom: 50px; right: 20px;">
+    <!-- <button id="shopButton" style="position: fixed; bottom: 20px; right: 20px;">Shop</button> -->
+    <!-- <div id="shopDiv" style="display: none; position: fixed; bottom: 50px; right: 20px;">
         <div>
             <h1>Shop</h1>
             <div class="shopItem">
@@ -103,12 +151,11 @@ if (isset($_COOKIE['userId'])) {
                     <button id="buyAutoClicker">Buy</button>
                 </div>
             </div>
-            <div class="shopItem" id="tostiHamKaas">
+            <div class="shopItem">
                 <img src="" alt="item2">
                 <h2>Tosti Ham Kaas</h2>
                 <p>De Tosti heeft ham. 2x JostiCoins per klik</p>
-                <p id="costTostiHamKaas">1000</p>
-                <button id="buyTostiHamKaas">Buy</button>
+                <button id="Tosti Ham Kaas">Buy</button>
             </div>
             <div class="shopItem">
                 <img src="" alt="item3">
@@ -116,8 +163,17 @@ if (isset($_COOKIE['userId'])) {
                 <p>Item 2 description</p>
                 <button id="Item 3">Buy</button>
             </div>
-            <!-- Add more shop items as needed -->
-        </div>
+             Add more shop items as needed 
+            
+        </div> -->
+        <script>
+            document.getElementById('buyAutoClicker').addEventListener('click', function () {
+                alert('it work')
+            })
+            document.getElementById('Tosti_Ham_Kaas').addEventListener('click', function () {
+                alert('it work pt2')
+            })
+        </script>
         <script>
             var userData;
             var inventoryData;
@@ -215,15 +271,6 @@ if (isset($_COOKIE['userId'])) {
                     tostiElement.style.width = '150px';
                     isCooldown = false;
                 }, 100);
-            });
-
-            document.getElementById('shopButton').addEventListener('click', function () {
-                var shopDiv = document.getElementById('shopDiv');
-                if (shopDiv.style.display === 'none') {
-                    shopDiv.style.display = 'block';
-                } else {
-                    shopDiv.style.display = 'none';
-                }
             });
 
             document.getElementById('buyAutoClicker').addEventListener('click', function () {
