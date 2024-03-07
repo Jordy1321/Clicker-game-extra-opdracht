@@ -91,7 +91,13 @@ body {
 .CT img{
     position: absolute;
     left: 30%;
-    top: 50%;
+    top: 61%;
+}
+
+.CT{
+    background-color: #007bff;
+    height: 610px;
+    width: 100%;
 }
 #rightBox {
     position: absolute;
@@ -147,6 +153,16 @@ body {
 }
 
 .shopItem2 {
+    display: flex;
+    align-items: top;
+    border: 3px solid black;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    height: 75px;
+}
+
+.shopItem3 {
     display: flex;
     align-items: top;
     border: 3px solid black;
@@ -222,13 +238,56 @@ body {
     font-weight: bold;
 }
 
-.shopItem2 #Tosti_Ham_Kaas{
+.shopItem2 #Tosti_ijzer{
     position: absolute;
     right: 10px;
     top: 20px;
     font-size: 50px;
     font-weight: bold;
 }
+
+.shopItem3 #Tostifactory{
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.shopItem3 img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+ 
+.shopItem3 .itemName {
+    font-size: 18px;
+    font-weight: bold;
+}
+ 
+.shopItem3 .itemDescription {
+    font-size: 14px;
+    color: #666;
+}
+ 
+.shopItem3 .itemCost {
+    font-size: 16px;
+    color: #007bff;
+}
+ 
+.shopItem3 .itemAmount {
+    font-size: 16px;
+    color: #333;
+}
+
+.shopItem3 #amountAutoClicker{
+    position: absolute;
+    right: 10px;
+    top: 400px;
+    font-size: 50px;
+    font-weight: bold;
+}
+
 .Stext{
     width: 690px;
 }
@@ -242,9 +301,72 @@ body {
     height: 75px;
 }
 
+.U img{
+    padding-left: 19px;
+    padding-top: 10px;
+}
+
 .name h1{
-    margin-left: 15%;
+    margin-left: 17%;
 }
 .mini{
    font-size: 20px; 
 }
+
+.navbar-part{
+    background-color: lightgray;
+    height: 110px;
+    width: 100%;
+}
+
+.parts{
+    width: 100%;
+    height: 10px;
+    background-color: black;
+}
+
+.shopItem3:hover .hover-content3 {
+    display: block;
+  }
+
+.shopItem2:hover .hover-content2 {
+    display: block;
+  }
+
+  .shopItem:hover .hover-content {
+    display: block;
+  }
+
+  /* Style for the description box */
+  .hover-content3 {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 1;
+    left: -470px;
+    top: 380px;
+  }
+
+  .hover-content2 {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 1;
+    left: -470px;
+    top: 280px;
+  }
+
+  .hover-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 1;
+    left: -470px;
+    top: 180px;
+  }
