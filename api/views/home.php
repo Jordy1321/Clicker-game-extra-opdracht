@@ -73,7 +73,7 @@ if (isset($_COOKIE['userId'])) {
                 <img src="https://cdn.discordapp.com/attachments/663678139268071437/1211971854529462304/image-removebg-preview.png?ex=65f023bf&is=65ddaebf&hm=45feba06ba03e6e8f3017066c4dbc755a689b758b92004b9fd29d95a7f774a52&"
                     alt="JC" id="jCoinsPicture">
                 <p id="jCoins">0</p><br>
-                <p id="jCoins">0</p><br>
+                <p id="jCoinsPerSecond">0</p><br>
             </div>
     <div class="CT">  
         <img id="clickButton"
@@ -163,13 +163,10 @@ if (isset($_COOKIE['userId'])) {
                 <p>Item 2 description</p>
                 <button id="Item 3">Buy</button>
             </div>
-             Add more shop items as needed 
+            Add more shop items as needed 
             
         </div> -->
         <script>
-            document.getElementById('buyAutoClicker').addEventListener('click', function () {
-                alert('it work')
-            })
             document.getElementById('Tosti_Ham_Kaas').addEventListener('click', function () {
                 alert('it work pt2')
             })
@@ -178,7 +175,8 @@ if (isset($_COOKIE['userId'])) {
             var userData;
             var inventoryData;
             var userId = "<?php echo strval($userId); ?>";
-            window.onload = function () {
+            /*window.onload = */(function () {
+                var nameElement = document.getElementById('name');
                 document.getElementById('loadingScreen').style.display = 'block';
                 console.log(userId);
                 if (!userId || userId === "undefined" || userId === "null") {
@@ -186,13 +184,14 @@ if (isset($_COOKIE['userId'])) {
                     document.getElementById('registerForm').style.display = 'block';
                     userId = null;
                 }
-                var url = "http://10.100.101.65:8000/api/v1/stats?userId=" + userId;
+                var url = "http://104.248.95.43:8000/api/v1/stats?userId=" + userId;
                 fetch(url)
                     .then(response => response.json())
                     .then(data => {
                         if (!data.success) {
                             var newUsername = prompt('Please enter your username:');
                             if (newUsername) {
+                                nameElement.innerText = newUsername;
                                 // Make a POST request to /api/v1/register
                                 fetch('/api/v1/register', {
                                     method: 'POST',
@@ -212,15 +211,18 @@ if (isset($_COOKIE['userId'])) {
                         } else {
                             // Hide the loading screen
                             document.getElementById('loadingScreen').style.display = 'none';
+                            var costAutoClicker = document.getElementById('costAutoClicker');
                             // Process the data
                             console.log(data);
                             userData = data.data.user;
                             inventoryData = data.data.inventory;
+                            nameElement.innerText = userData.username;
                             console.log(inventoryData)
                             var autoClickerCount = 0;
                             if (inventoryData && inventoryData.length > 0) {
                                 autoClickerCount = inventoryData[0].itemCount;
                                 console.log(autoClickerCount);
+                                document.getElementById('amountAutoClicker').innerText = autoClickerCount;
                             } else console.log("No inventory data found");
                             costAutoClicker.innerText = calculateCost(10, autoClickerCount);
                             document.getElementById('jCoins').innerText = userData.points;
@@ -231,7 +233,7 @@ if (isset($_COOKIE['userId'])) {
                     });
 
 
-            };
+            })();
 
             // Add an event listener to the click button
 
@@ -273,7 +275,10 @@ if (isset($_COOKIE['userId'])) {
                 }, 100);
             });
 
+            var isBuying = false;
             document.getElementById('buyAutoClicker').addEventListener('click', function () {
+                if (isBuying) return;
+                isBuying = true;
                 saveStats();
                 var itemName = 'Auto Clicker'; // Update this to the name of the item
                 var costElement = document.getElementById('costAutoClicker');
@@ -293,8 +298,12 @@ if (isset($_COOKIE['userId'])) {
                             console.log(data);
                             // Update the user's points
                             document.getElementById('jCoins').innerText = data.body.newPoints;
-                            var newCost = calculateCost(currentCost, 1); // replace 1 with the actual amount
-                            costElement.textContent = newCost.toString();
+                            var newCost = calculateCost(10, inventoryData[0].itemCount + 1); // replace 1 with the actual amount
+                            console.log(newCost)
+                            costElement.innerText = newCost.toString();
+                            var newAmount = document.getElementById('amountAutoClicker').innerText;
+                            newAmount++;
+                            document.getElementById('amountAutoClicker').innerText = newAmount;
                         } else {
                             if (data.message === "Not enough points") {
                                 alert("Not enough points");
@@ -304,9 +313,12 @@ if (isset($_COOKIE['userId'])) {
                     .catch(error => {
                         console.error('Error:', error);
                     });
+                setTimeout(() => {
+                    isBuying = false;
+                }, 1000);
             });
 
-            document.getElementById('buyTostiHamKaas').addEventListener('click', function () {
+            /*document.getElementById('buyTostiHamKaas').addEventListener('click', function () {
                 saveStats();
                 var itemName = 'TostiHamKaas'; // Update this to the name of the item
                 var shopItemElement = document.getElementById('tostiHamKaas');
@@ -336,7 +348,7 @@ if (isset($_COOKIE['userId'])) {
                     .catch(error => {
                         console.error('Error:', error);
                     });
-            });
+            });*/
 
             setInterval(() => {
                 if (inventoryData === undefined || !inventoryData[1]) {
@@ -379,6 +391,9 @@ if (isset($_COOKIE['userId'])) {
                     });
             }
             function createTosti() {
+                var perSecondElement = document.getElementById('jCoinsPerSecond');
+                var perSecond = inventoryData[0].itemCount * 0.1;
+                perSecondElement.innerText = `+${Math.ceil(perSecond)} per second`;
                 var tosti = document.createElement('div');
                 tosti.className = 'tosti';
                 tosti.style.left = Math.random() * document.getElementById('leftBox').offsetWidth + 'px';
@@ -390,7 +405,9 @@ if (isset($_COOKIE['userId'])) {
                 }, 5000);
             }
             // Create a new tosti every 100 milliseconds
-            setInterval(createTosti, 100);
+            setTimeout(function () {
+                setInterval(createTosti, 100);
+            }, 500);
         </script>
 </body>
 
